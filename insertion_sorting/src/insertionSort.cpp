@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include "selectionSort.hpp"
+#include "insertionSort.hpp"
 
 void is_number(std::string& s, bool& fl, int i)
 {
@@ -45,35 +45,34 @@ void swap(int& a, int& b)
 	a = b;
 	b = tmp;
 }
-
-//function to sort an array using selection sort.
+//function to sort an array using insertion sort.
 void sorting(int arr[], int size, int a)
 {
-    int index = 0;
-    for (int i = 0; i < size - 1; i++) {
-        index = i;
-        for (int j = i + 1; j < size; j++) {
-            if (0 == a) {
-                if (arr[j] < arr[index]) {
-                    index = j;
-                }
-            } else if (1 == a)  {
-                if (arr[j] > arr[index]) {
-                    index = j;
-                }
-            }
-        }
-        swap(arr[index], arr[i]);
-    }
+	int currentElement = 0;
+	int j = 0;
+	for (int i  = 1; i < size; i++) {
+		currentElement = arr[i];
+		j = i - 1;
+		if (a == 0) {
+			while (j >= 0 && arr[j] > currentElement) {
+				arr[j + 1] = arr[j];
+				j--;
+			}
+		} else {
+			while (j >= 0 && arr[j] <  currentElement) {
+				arr[j + 1] = arr[j];
+				j--;
+			}
+		}
+		arr[j + 1] = currentElement;
+	}
 }
-
 // Function to print array.
-void printArr(int arr[], int size)
+void printArr( int arr[], int size)
 {
 	std::cout << "Sorted arr: \n ";
 	for (int i = 0; i < size; i++) {
 		std::cout << arr[i] << ' ';
 	}
-	std::cout << std::endl;
+    std::cout << std::endl;
 }
-

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include "selectionSort.hpp"
+#include "quickSort.hpp"
 
 void is_number(std::string& s, bool& fl, int i)
 {
@@ -45,28 +45,6 @@ void swap(int& a, int& b)
 	a = b;
 	b = tmp;
 }
-
-//function to sort an array using selection sort.
-void sorting(int arr[], int size, int a)
-{
-    int index = 0;
-    for (int i = 0; i < size - 1; i++) {
-        index = i;
-        for (int j = i + 1; j < size; j++) {
-            if (0 == a) {
-                if (arr[j] < arr[index]) {
-                    index = j;
-                }
-            } else if (1 == a)  {
-                if (arr[j] > arr[index]) {
-                    index = j;
-                }
-            }
-        }
-        swap(arr[index], arr[i]);
-    }
-}
-
 // Function to print array.
 void printArr(int arr[], int size)
 {
@@ -76,4 +54,33 @@ void printArr(int arr[], int size)
 	}
 	std::cout << std::endl;
 }
-
+// Function  takes last element as lastElement, places all smaller to left of lastElement and all greater elemets to right.
+int partition(int arr[], int start, int end, int a)
+{
+    int lastElement = arr[end];
+    int j = start - 1;
+    for (int i = start; i <= end - 1; i++) {
+        if (0 == a){
+            if (arr[i] <= lastElement) {
+                j++;
+                swap(arr[i],arr[j]);
+            }
+        } else if (1 == a) {
+            if (arr[i] >= lastElement) {
+                j++;
+                swap(arr[i],arr[j]);
+            }
+        }
+    }
+    swap(arr[j+1],arr[end]);
+    return (j + 1);
+}
+//Main function to sort an array using quick sort.
+void sorting(int arr[], int start, int end, int a)
+{
+    if (start < end) {
+        int p = partition(arr,start,end,a);
+        sorting(arr,start,p - 1,a);
+        sorting(arr,p + 1,end,a);
+    }
+}

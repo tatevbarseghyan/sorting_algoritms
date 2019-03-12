@@ -1,7 +1,7 @@
+#include "bubbleSort.hpp"
 #include <iostream>
 #include <string>
 #include <sstream>
-#include "selectionSort.hpp"
 
 void is_number(std::string& s, bool& fl, int i)
 {
@@ -45,35 +45,28 @@ void swap(int& a, int& b)
 	a = b;
 	b = tmp;
 }
-
-//function to sort an array using selection sort.
-void sorting(int arr[], int size, int a)
+void printArr( int arr[], int size)
 {
-    int index = 0;
-    for (int i = 0; i < size - 1; i++) {
-        index = i;
-        for (int j = i + 1; j < size; j++) {
-            if (0 == a) {
-                if (arr[j] < arr[index]) {
-                    index = j;
-                }
-            } else if (1 == a)  {
-                if (arr[j] > arr[index]) {
-                    index = j;
-                }
-            }
-        }
-        swap(arr[index], arr[i]);
-    }
-}
-
-// Function to print array.
-void printArr(int arr[], int size)
-{
-	std::cout << "Sorted arr: \n ";
+	std::cout << " Sorted array: \n ";
 	for (int i = 0; i < size; i++) {
 		std::cout << arr[i] << ' ';
 	}
 	std::cout << std::endl;
 }
-
+// function to sort an array using bubble sort.
+void sorting(int arr[], int size, int a)
+{
+	for (int i = 0; i < size - 1; i++) {
+		for (int j = 0; j < size - i - 1; j++) {
+			if (0 == a) {
+				if (arr[j] > arr[j+1]) {
+				swap(arr[j],arr[j+1]);
+				}
+			} else if (1 == a) {
+				if (arr[j] < arr[j+1]) {
+				swap(arr[j],arr[j+1]);
+				}
+			}
+		}
+    }
+}

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "selectionSort.hpp"
+#include "quickSort.hpp"
 
 int main()
 {
@@ -20,7 +20,7 @@ int main()
     while (sortBy != 0 || sortBy != 1) {
         sortBy = get_int(1);
         if (sortBy == 0 || sortBy == 1) {
-            sorting(arr,n,sortBy);
+            sorting(arr,0,n-1,sortBy);
             printArr(arr,n);
             break;
         } else {

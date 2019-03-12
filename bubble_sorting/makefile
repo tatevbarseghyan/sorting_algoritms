@@ -1,4 +1,4 @@
-all:  bin/selection_sort
+all:  bin/bubble_sort
 
 CC := g++
 SOURCES := $(wildcard src/*cpp)
@@ -23,7 +23,7 @@ obj/%.o :
 ./bin:
 	mkdir -p bin
 
-bin/selection_sort : $(OBJECTS) ./bin
+bin/bubble_sort : $(OBJECTS) ./bin
 	$(CC) $(OBJECTS) -o $@
 
 .PHONY clean: 
